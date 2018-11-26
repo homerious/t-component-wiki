@@ -3,7 +3,36 @@
 
 本套脚手架是基于vue并内含一套定制的UI组件和页面demo的开发脚手架。
 
-@toc
+- [t-component dev-kit 介绍文档](#t-component-dev-kit-介绍文档)
+    - [基本使用](#基本使用)
+    - [组件使用方法介绍](#组件使用方法介绍)
+    - [组件API及使用介绍](#组件api及使用介绍)        
+      - [1. backtop / 回到顶部](#1-backtop--回到顶部)        
+      - [2. badge / 标记](#2-badge--标记)        
+      - [3. button / 按钮](#3-button--按钮)        
+      - [4. cascader / 级联选择](#4-cascader--级联选择)        
+      - [5. checkbox / 多选框](#5-checkbox--多选框)        
+      - [6. CheckboxGroup / 多选框组](#6-checkboxgroup--多选框组)        
+      - [7. datepicker / 日期选择器](#7-datepicker--日期选择器)        
+      - [8. input / 输入框](#8-input--输入框)        
+      - [9. loading / 加载中](#9-loading--加载中)        
+      - [10. menu / 菜单](#10-menu--菜单)        
+      - [11. messagebox / 对话框](#11-messagebox--对话框)        
+      - [12. modal / 模态框](#12-modal--模态框)        
+      - [13.Notify / 通知](#13notify--通知)        
+      - [14. pagination / 分页导航](#14-pagination--分页导航)        
+      - [15. progress / 进度条](#15-progress--进度条)        
+      - [16. radio / 单选框](#16-radio--单选框)        
+      - [17. select / 选择框](#17-select--选择框)        
+      - [18. step / 步骤条](#18-step--步骤条)        
+      - [19. switch / 开关](#19-switch--开关)        
+      - [20. table / 表格](#20-table--表格)        
+      - [21. timepicker / 时间选择器](#21-timepicker--时间选择器)        
+      - [22. tooltip / 气泡提示框](#22-tooltip--气泡提示框)        
+      - [23. transfer / 穿梭框](#23-transfer--穿梭框)        
+      - [24. tree / 树形选择](#24-tree--树形选择)        
+      - [25. upload / 上传](#25-upload--上传)    
+      - [iconfont类名图例](#iconfont类名图例)
 
 ## 基本使用
 
@@ -714,7 +743,7 @@ import { Progress } from 't-component';
 
 ==备注==： canInput属性应用于某些需要搜索选项或者提供搜索结果的业务场景中。
 
-#### 事件
+事件
 
 | 事件名称 | 说明 | 返回值 |
 | --- | --- |---|
