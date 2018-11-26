@@ -32,7 +32,7 @@
       - [23. transfer / 穿梭框](#23-transfer--穿梭框)        
       - [24. tree / 树形选择](#24-tree--树形选择)        
       - [25. upload / 上传](#25-upload--上传)    
-      - [iconfont类名图例](#iconfont类名图例)
+     - [iconfont类名图例](#iconfont类名图例)
 
 ## 基本使用
 
