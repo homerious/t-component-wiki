@@ -176,10 +176,11 @@ import { Cascader } from 't-component';
 |displayMethod|设置显示的格式|`Funtion/String`|  `label`   |     |
 | popupPlacement  | 设置浮层位置  |`String`     |  `'bottomLeft'`   |  `'bottomLeft'` `'bottomRight'` `'topLeft'` `'topRight'`   |
 |anyState| 是否允许选择任意一级的选项  |  `boolean`   |  `false`   |  `true false`   |
-|notFoundText||列表无结果显示的时候显示的提示|  `String`  |     |     |
-|resultFilter| 选择之后进行筛选的显示函数|`Function`   |     |     |
 
-==备注==:displayMethod属性为输入字符串的时候渲染对应字符串的数据字段，方法则用于某些复杂显示的数据字段的业务场景。
+==备注==:
+
+1. displayMethod属性为输入字符串的时候渲染对应字符串的数据字段，方法则用于某些复杂显示的数据字段的业务场景。
+2. 设置多选时，最后一级要传数组，eg: [{一级}，{二级}, [{三级}，{三级}]]
 
   事件
 
@@ -302,7 +303,6 @@ function disabledDate(date) {
 |max|仅在`type="number"`时生效，输入数字的最大值|`Number`|  ||
 |min|仅在`type="number"`时生效，输入数字的最小值|`Number`|  ||
 |maxLength|原生属性，输入字符串的最大长度|`Number`  |    |     |
-|minLength| 原生属性，输入字符串的最大长度|`Number` |  |     |
 
 ==备注==：errorMessage为字符串的时候，默认为错误显示的文字内容，而为对象的时候的结构应为：
 
@@ -321,6 +321,7 @@ function disabledDate(date) {
 |keyup|  输入框按键完毕触发的事件  | 返回输入的值 |
 |focus|选择框获得焦点的时候触发|   |
 |blur|选择框失去焦点的时候触发|   |
+|enter|  按enter键的时候触发   |   |
 
 插槽
 
@@ -1133,7 +1134,7 @@ import { Upload } from 't-component';
 | multiple  | 是否支持多选文件，`ie10+` 支持。开启后按住 ctrl 可选择多个文件  |  `Boolean`|`false`|`true false`|
 |name| 发到后台的文件参数名  | `String` |     |     |
 |maxSize| 文件大小限制，单位kb  | `Number`|     |     |
-| listType  | 文件列表类型  |   `String`  |  `text`   |  `text picture card`   |
+| listType  | 文件列表类型  |   `String`  |  `text`   |  `text picture-card`   |
 |onRemove| 文件列表移除文件时的钩子，参数为file和文件列表数组|  `Function(file,fileList)`   |     |     |
 |limit| 最多上传文件的个数  |   `Number`   |     |     |
 |beforeUpload| 上传前的钩子，参数为file  |  `Function(file)`    |     |     |
