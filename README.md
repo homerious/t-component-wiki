@@ -295,6 +295,9 @@ import { Datepicker } from 't-component';
 |type| 设置选择器的功能,可以选择日期、月份、年份和日期范围|`String`   |  `date`   | `date month year week dateRange`    |
 | format  |显示格式|`String`|  `yyyy-mm-dd`   |     |
 |disabledDate|设置不可选择的日期|    `Function`    |     |    |
+|rangePlaceholder|   type为dateRange的时候输入框的placeholder|  `Array`      |  `['开始时间', '结束时间']`|    |
+|placeholder|ype为year、month、date的时候输入框的placeholder|`String`|`'选择日期'`|    |
+
 
 ==备注==：disableDate属性方法会返回一个Date对象作为参数，disableDate方法则需要返回一个布尔值以表示传入的日期是否在不可选择的日期范围内。
 示例：(单纯的函数示例)
@@ -588,7 +591,7 @@ const config = {
 
 简介：模态对话框。
 
-使用场景：需要用户处理事务，但又不希望跳转页面以致打断工作流程时，或需要询问用户的确认时。使用 modal在当前页面中打开一个浮层，来承载相应的操作。
+使用场景：需要用户处理事务，但又不希望跳转页面以致打断工作流程时，或需要询问用户的确认时。使用 modal在当前页面中打开一个浮层，来承载相应的操作。
 
 引用
 
@@ -901,7 +904,7 @@ Step组件属性
 
 简介：开关选择器。
 
-使用场景：需要表示开关状态或两种状态之间的切换时。和checkbox的区别：切换 switch 会直接触发状态的改变， checkbox 用于状态标记，需要和提交操作配合。
+使用场景：需要表示开关状态或两种状态之间的切换时。和checkbox的区别：切换 switch 会直接触发状态的改变， checkbox 用于状态标记，需要和提交操作配合。
 
 引用
 
@@ -1009,12 +1012,16 @@ Table组件属性
 | showSummary |  是否显示的合计内容 | `Boolean`   |  `false`   | `true false`    |
 |summaryMethod| 自定义计算合计的方法  |  `Function`   |     |     |
 |rowClass| 设置自定义表行的样式类  |`String|Function`|     |     |
-|height| 表格高度(单位：px)，内容超过了就会自动滚动，不设置会一直延伸  |`String`|     |     |
-|width|表格宽度(单位：px)，内容超过了就会自动滚动，不设置会一直延伸    |  `String`   |     |     |
+|height| 表格高度(单位：px)，内容超过了就会自动滚动，不设置会一直延伸  |`Number`|     |     |
+|width|表格宽度(单位：px)，内容超过了就会自动滚动，不设置会一直延伸    |  `Number`   |     |     |
 |onSelect| 表格行被选中触发的回调函数  |     |     |     |
 |onClick| 表格行被点击的回调函数  |     |     |     |
 |  ondbClick |  表格行被点击的回调函数 |     |     |     |
- 
+|fixedHead|是否固定表头 |  `Boolean`   | `false`   | `true false`    |
+|singleSelect|在有selections列的表格中，选择选项是否为单选| `Boolean`   | `false`   | `true false`    |
+
+==注：==rowClass属性输入Function时，会获得该行的数据和该行的index作为参数，需要返回一个类名
+
  插槽
 
 | 名称 | 说明 |
@@ -1034,6 +1041,7 @@ TableColumn组件属性
 |type| 该列的显示类型  |  `String`   |     |  `'selection' 'index'`  |
 |width|  该列的宽度 |  `String`   |     |     |
 |align| 该列的对齐方式  |  `String`   |     | `'center' 'left' 'right'`    |
+|fixed|是否固定该列到左边/右边，填true默认为左边|   `String|Boolean`   |     |  `true 'left' 'right'`   |
 |headAlign| 表头的对齐方式  |`String`|     |  `'center' 'left' 'right'`   |
 |hasSorter| 是否显示排序  |  `Boolean`   |  `false`   | `true false`    |
 |sortMethod| 自定义的排序函数,，参数是两个元素，需要返回一个布尔值  | `Function`    |     |     |
