@@ -472,6 +472,7 @@ Menu组件属性
 |bgColor|    默认的背景颜色      |    `String`    |  `'#fff'`   |    |
 |activeTextColor|   选中的项的文字颜色       |   `String`     |  `'#4385ff'`   |    |
 |activeBgColor|    选中的项的背景颜色      |    `String`    |  `'#d5e5ff'`   |    |
+|value|  用于v-model绑定，为当前显示的menu的名字        |`String`      |     |    |
 
 ==备注==：在MenuItem中设置了link属性的的时候才会激发路由跳转的功能，才能使Menu中的routerHandler属性发挥作用，routerHandler接受参数是被点击的MenuItem的link属性的路由路径信息。
 
@@ -595,8 +596,17 @@ const config = {
 
 引用
 
-```JavaScript
-import { Modal } from 't-component';
+```HTML
+<t-modal v-model="showModal">
+  <div slot="header">这个是一个自定义的模态框</div>
+  <div slot="body">
+    它啥都可以装的下，满足你所有定制需求  
+  </div>
+  <div slot="footer">  
+    <Button type="primary" style="float: right;">确定</Button>
+    <Button style="float: right;margin-right: 15px;">取消</Button>
+  </div>
+</t-modal><!--已在vue中注册可以直接使用-->
 ```
 
 属性
@@ -1006,7 +1016,7 @@ Table组件属性
 
 | 属性名  |  说明  | 类型 | 默认值 | 可选值
 |---|---| --- | --- | --- |
-|  boredered |  是否显示边框 | `Boolean`   |  `false`   | `true false`    |
+|  bordered |  是否显示边框 | `Boolean`   |  `false`   | `true false`    |
 |source| 渲染的数据内容  |  `Array`   |     |     |
 | emptyText  |  没有内容显示的文字 |  `String`   |`'暂无数据显示'`|     |
 | showSummary |  是否显示的合计内容 | `Boolean`   |  `false`   | `true false`    |
@@ -1014,9 +1024,9 @@ Table组件属性
 |rowClass| 设置自定义表行的样式类  |`String|Function`|     |     |
 |height| 表格高度(单位：px)，内容超过了就会自动滚动，不设置会一直延伸  |`Number`|     |     |
 |width|表格宽度(单位：px)，内容超过了就会自动滚动，不设置会一直延伸    |  `Number`   |     |     |
-|onSelect| 表格行被选中触发的回调函数  |     |     |     |
-|onClick| 表格行被点击的回调函数  |     |     |     |
-|  ondbClick |  表格行被点击的回调函数 |     |     |     |
+|onSelect| 表格行被选中触发的回调函数，返回参数的是所有选中行的数组下标  |     |     |     |
+|onClick| 表格行被点击的回调函数，返回参数是点击事件对象$event和该行的数据  |     |     |     |
+|  ondbClick |  表格行被点击的回调函数，返回参数是点击事件对象$event和该行的数据 |     |     |     |
 |fixedHead|是否固定表头 |  `Boolean`   | `false`   | `true false`    |
 |singleSelect|在有selections列的表格中，选择选项是否为单选| `Boolean`   | `false`   | `true false`    |
 
@@ -1028,6 +1038,7 @@ Table组件属性
 |---|---|
 | header |  自定义的头部的内容 |
 |footer|  自定义的底部的内容 |
+|emptyBlock|自定义的无数据显示的块内容|
 
 TableColumn组件属性
 
@@ -1035,7 +1046,7 @@ TableColumn组件属性
 
 | 属性名  |  说明  | 类型 | 默认值 | 可选值
 |---|---| --- | --- | --- |
-| colkeys  | 该列对应的数据字段  |  `String`   |     |     |
+| colkey  | 该列对应的数据字段  |  `String`   |     |     |
 |label|显示在表头的文字|   `String`  |     |     |
 |colClass|  自定义该列的样式类 |   `String`   |     |     |
 |type| 该列的显示类型  |  `String`   |     |  `'selection' 'index'`  |
