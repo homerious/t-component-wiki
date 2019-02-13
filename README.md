@@ -49,7 +49,7 @@ npm install
 npm run dev
 ```
 
-3、打开接口和上传模拟服务器。
+3、打开接口和上传模拟服务器。默认端口为3000
 
 ```JavaScript
 npm run mock
@@ -59,6 +59,24 @@ npm run mock
 
 ```JavaScript
 npm run build
+```
+
+5、运行业务场景实例系统的开发模式
+
+```JavaScript
+npm run dev-demo
+```
+
+6、运行业务场景实例系统的打包，会自动打包到`/demo/bin`文件夹内容，为业务场景系统的前端内容
+
+```JavaScript
+npm run dev-demo
+```
+
+5、运行业务场景实例系统。默认端口为3001
+
+```JavaScript
+npm run demo
 ```
 
 ## 组件使用方法介绍
@@ -296,7 +314,7 @@ import { Datepicker } from 't-component';
 | format  |显示格式|`String`|  `yyyy-mm-dd`   |     |
 |disabledDate|设置不可选择的日期|    `Function`    |     |    |
 |rangePlaceholder|   type为dateRange的时候输入框的placeholder|  `Array`      |  `['开始时间', '结束时间']`|    |
-|placeholder|ype为year、month、date的时候输入框的placeholder|`String`|`'选择日期'`|    |
+|placeholder|type为year、month、date的时候输入框的placeholder|`String`|`'选择日期'`|    |
 
 
 ==备注==：disableDate属性方法会返回一个Date对象作为参数，disableDate方法则需要返回一个布尔值以表示传入的日期是否在不可选择的日期范围内。
@@ -450,10 +468,10 @@ const config = {
 </Menu>
 </template>
 <script>
-import { Menu, MenuItem, SubMenu } from 't-component';
+import { Menu , MenuItem, SubMenu } from 't-component'; // 建议menu组件换用其他别名，防止eslint报错
 export default{
   name: 'my-menu';
-  components: { Menu, MenuItem, SubMenu },
+  components: { 't-menu': Menu, MenuItem, SubMenu },
 }
 </script>
 ```
@@ -887,7 +905,7 @@ Steps组件属性
 |---|---| --- | --- | --- |
 | direction |  设置进度条显示的方向 | `String`   | `'horizontal'`    |  `'horizontal' 'vertical'`   |
 | active  |当前激活的步骤,从0开始算起|  `Number`   |     |     |
-| status  |当前的状态|`String`|`'processing'`| `'processing' 'success' 'error'`    |
+| status  |当前的状态|`String`|`'process'`| `'process' 'success' 'error'`    |
 |useNumber|  设置是否用数字代替进度图标 |     |     |     |
 |  iconProcess | 处理中进度的图标  |  `String`   |  `'icon-hourglass'`   |   iconfont的图标类名  |
 |iconWait| 等待中的进度图标  |  `String`   |  `'icon-more'`   |  iconfont的图标类名   |
@@ -1056,6 +1074,7 @@ TableColumn组件属性
 |headAlign| 表头的对齐方式  |`String`|     |  `'center' 'left' 'right'`   |
 |hasSorter| 是否显示排序  |  `Boolean`   |  `false`   | `true false`    |
 |sortMethod| 自定义的排序函数,，参数是两个元素，需要返回一个布尔值  | `Function`    |     |     |
+|nowarp| 是否允许内容换行，不换行超出的内容将变成省略号，鼠标滑过会有气泡提示框显示被隐藏的内容  |  `Boolean`   |  `false`   | `true false`    |
 
 作用域插槽[slot-scope](https://cn.vuejs.org/v2/guide/components-slots.html#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD)
 
@@ -1176,7 +1195,7 @@ import { Transfer } from 't-component';
 
 | 属性名  |  说明  | 类型 | 默认值 | 可选值
 |---|---| --- | --- | --- |
-|  source |  数左边的据源 |  `Array`   |     |     |
+|  source |  左边的数据源 |  `Array`   |     |     |
 | displayMethod|自动定义显示的内容|  `String|Function(item)`   | `label`    |     |
 |title|设置两个穿梭框的标题| `Array | ['源数据', '目标数据']`    |     |     |
 | value| 右边框数据的值，绑定`v-model`可不用再绑定此属性     |`Array`|     ||
@@ -1260,6 +1279,7 @@ import { Upload } from 't-component';
 |onExcess| 超过上传文件个数的钩子，参数为file和文件列表数组  |  `Function(files, fileList)`   |     |     |
 |  success |  上传成功触发的事件,参数为请求返回体和file |  `Function(respond, file)`   |     |     |
 |error|  上传失败触发的事件，参数为请求返回的错误和file |  `Function(err, file)`   |     |     |
+|fileList| 上传文件的列表  |  `Array`   |     |     |
 
 插槽
 
