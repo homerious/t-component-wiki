@@ -1565,5 +1565,5 @@ ListItem组件插槽：
 
 ## iconfont类名图例
 
-![图片](https://coding.net/s/dcaf3923-2d54-4795-a1c9-5d8288d25761)
-![图片](https://coding.net/s/8ace169b-04a9-40ab-ae63-8d90dee98203)
+![iconfontlegend](./img/iconfont1.png)
+![iconfontlegend](./img/iconfont2.png)
