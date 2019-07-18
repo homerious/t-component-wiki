@@ -808,14 +808,14 @@ import { Progress } from 't-component';
 引用
 
 ```HTML
-<t-radio value="1" v-model="check"></t-radio><!--已在vue中注册可以直接使用-->
+<t-radio label="1" v-model="check"></t-radio><!--已在vue中注册可以直接使用-->
 ```
 
 属性
 
 | 属性名  |  说明  | 类型 | 默认值 | 可选值
 |---|---| --- | --- | --- |
-| value  |单选框代表的值,如果是字符串或者数字会在没有包裹内容的时候自动显示出来|  `Boolean|Number|String`   |     |     |
+| label  |单选框代表的值,如果是字符串或者数字会在没有包裹内容的时候自动显示出来|  `Boolean|Number|String`   |     |     |
 |checked| 单选框是否被选择，若在组件里绑定`v-model`的值，不需要再绑定   |     |     |     |
 | disable  |是否禁用单选框|`Boolean`|`false`|`true` `false`|
 
