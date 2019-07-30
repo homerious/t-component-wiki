@@ -1301,6 +1301,8 @@ import { Upload } from 't-component';
 |  success |  上传成功触发的事件,参数为请求返回体和file |  `Function(respond, file)`   |     |     |
 |error|  上传失败触发的事件，参数为请求返回的错误和file |  `Function(err, file)`   |     |     |
 |fileList| 上传文件的列表  |  `Array`   |     |     |
+|showUploadText| 是否显示类型为pictureCard框内的文字  |  `Boolean`   |  `false`   | `true false`    |
+|uploadText| 显示类型为pictureCard框内的文字  |  `String`   |     |     |
 
 插槽
 
