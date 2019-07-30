@@ -843,7 +843,7 @@ import { Progress } from 't-component';
 
 | 属性名  |  说明  | 类型 | 默认值 | 可选值
 |---|---| --- | --- | --- |
-|mutiple | 是否可以多选  |`Boolean`|`true`| `true` `false` |
+|multiple | 是否可以多选  |`Boolean`|`true`| `true` `false` |
 |disable|是否禁用|`Boolean`| `false`   | `true` `false`    |
 | canInput|是否可以输入|`Boolean`|`false`|`true` `false`|
 |value|选中的项，若已绑定v-model，则不需要绑定此属性|  `Array` |   |     |
