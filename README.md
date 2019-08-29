@@ -37,6 +37,7 @@
       - [28. card / 卡片](#28-card--卡片)
       - [29.affix / 固钉](#29-affix--固钉)
       - [30.list / 列表](#30-list--列表)
+      - [31.form / 表单](#31-form--表单)
      - [iconfont类名图例](#iconfont类名图例)
 
 ## 基本使用
@@ -1564,6 +1565,106 @@ ListItem组件插槽：
 | avatar | 列表元素的图标 |
 | action | 列表元素的操作内容，位置在卡片底部 |
 | extra | 列表元素的额外内容，展示在列表元素最右侧 |
+
+
+### 31. form / 表单
+
+简介：同步、异步表单验证
+
+使用场景：表单校验。
+
+引用
+
+``` HTML 
+<template>
+     <t-form :model="formData" ref="form" :rules="rules" @validate="validator">
+            <formItem label="手机:" prop="tel" >
+              <t-input type="text"
+            v-model.trim="formData.tel"
+            placeholder="请输入手机号"
+            size="large"
+            clearable
+            ></t-input>
+            </formItem>
+            <formItem label="性别:" prop="sex" >
+               <div style="display:inline-block;text-align: left;">
+            <t-radio v-model="formData.sex" label="0" @change="sexChange">男</t-radio>
+            <t-radio v-model="formData.sex" label="1" @change="sexChange">女</t-radio>
+            <t-radio v-model="formData.sex" label="2" @change="sexChange">保密</t-radio>
+          </div>
+            </formItem>
+          </t-form>
+            <button @click="handleSubmit">保存</button>
+            <button @click="clear">清除</button>
+</template>
+<script>
+import { form, formItem } from 't-component';
+export default {
+    name: 'my-form',
+    data() {
+        return {
+              formData: {
+                tel: '',
+                sex: '',
+              },
+             rules: {
+                tel: [
+                  { required: true, message: '不能为空', trigger: 'blur' },
+                  { validator: telValidator },
+                ],
+                sex: [
+                  { required: true, message: '请选择性别' },
+                ],
+              },
+        }
+    },
+    components: { form, formItem },
+}
+</script>
+```
+
+form 组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+| model | 表单数据对象 | `Object` | | |
+| rules | 表单数据校验规则 | `Object` | | 示例：{
+        tel: [
+          { required: true, message: '不能为空', trigger: 'blur' },
+          { validator: telValidator },
+        ],
+        sex: [
+          { required: true, message: '请选择性别' },
+        ],
+      }, |
+| showPointer | 是否显示必填红点 | `Boolean` | `true` | true、false |
+| labelPos | 标签显示对齐方式 | `String` | `left` | left、right |
+| inline | 表单是否行内显示 | `Boolean` | `false` | true、false |
+| showMessage | 是否显示校验错误信息 | `Boolean` | `true` | true、false |
+| inlineMessage | 是否行内显示校验错误信息 | `Boolean` | `false` | true、false |
+
+form 组件事件：
+
+| 事件名称 | 说明 | 返回值 |
+|---|---|---|
+| validate | 对整个表单进行校验的方法。validate（callback） |  |
+| clearValidate | 清除表单校验的信息。clearValidate（）可传需要清除的prop值，不传则全部清除 |  |
+
+ListItem组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+| title | 列表元素的标题 | `String` | | |
+
+formItem 组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+| prop | 表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的 | `String` | | |
+| label | 标签文本 | `String` | |  |
+| rules | 校验规则 | `Array` |  | 示例：[{ required: true, message: '不能为空', trigger: 'blur' },
+        { pattern: /^1[34578]\d{9}$/, message: '您的手机号码输入错误' },] |
+
 
 ## iconfont类名图例
 
