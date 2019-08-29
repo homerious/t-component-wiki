@@ -1650,11 +1650,6 @@ form 组件事件：
 | validate | 对整个表单进行校验的方法。validate（callback） |  |
 | clearValidate | 清除表单校验的信息。clearValidate（）可传需要清除的prop值，不传则全部清除 |  |
 
-ListItem组件属性：
-
-| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
-|---|---|---|---|---|
-| title | 列表元素的标题 | `String` | | |
 
 formItem 组件属性：
 
