@@ -1630,7 +1630,7 @@ form 组件属性：
 | model | 表单数据对象 | `Object` | | |
 | rules | 表单数据校验规则 | `Object` | | `见上案例` |
 | showPointer | 是否显示必填红点 | `Boolean` | `true` | true、false |
-| labelPos | 标签显示对齐方式 | `String` | `left` | left、right |
+| labelAlign | 标签显示对齐方式 | `String` | `left` | left、right |
 | inline | 表单是否行内显示 | `Boolean` | `false` | true、false |
 | showMessage | 是否显示校验错误信息 | `Boolean` | `true` | true、false |
 | inlineMessage | 是否行内显示校验错误信息 | `Boolean` | `false` | true、false |
