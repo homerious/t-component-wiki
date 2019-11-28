@@ -1628,15 +1628,7 @@ form 组件属性：
 | 属性名 | 说明 | 类型 | 默认值 | 可选值 |
 |---|---|---|---|---|
 | model | 表单数据对象 | `Object` | | |
-| rules | 表单数据校验规则 | `Object` | | 示例：{
-        tel: [
-          { required: true, message: '不能为空', trigger: 'blur' },
-          { validator: telValidator },
-        ],
-        sex: [
-          { required: true, message: '请选择性别' },
-        ],
-      }, |
+| rules | 表单数据校验规则 | `Object` | | `见上案例` |
 | showPointer | 是否显示必填红点 | `Boolean` | `true` | true、false |
 | labelPos | 标签显示对齐方式 | `String` | `left` | left、right |
 | inline | 表单是否行内显示 | `Boolean` | `false` | true、false |
@@ -1657,8 +1649,7 @@ formItem 组件属性：
 |---|---|---|---|---|
 | prop | 表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的 | `String` | | |
 | label | 标签文本 | `String` | |  |
-| rules | 校验规则 | `Array` |  | 示例：[{ required: true, message: '不能为空', trigger: 'blur' },
-        { pattern: /^1[34578]\d{9}$/, message: '您的手机号码输入错误' },] |
+| rules | 校验规则 | `Array` |  | 示例：[{ required: true, message: '不能为空', trigger: 'blur' }, { pattern: /^1[34578]\d{9}$/, message: '您的手机号码输入错误' },] |
 
 
 ## iconfont类名图例
