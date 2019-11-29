@@ -1651,6 +1651,15 @@ formItem 组件属性：
 | label | 标签文本 | `String` | |  |
 | rules | 校验规则 | `Array` |  | 示例：[{ required: true, message: '不能为空', trigger: 'blur' }, { pattern: /^1[34578]\d{9}$/, message: '您的手机号码输入错误' },] |
 
+rules配置规则：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+| required | 是否必填 | `Boolean` | | |
+| message | 必填提示语 | `String` | |  |
+| trigger | 事件检验方式 | `String` |  | 'blur'... |
+| pattern | 正则表达式 | `Regex` |  | |
+
 
 ## iconfont类名图例
 
