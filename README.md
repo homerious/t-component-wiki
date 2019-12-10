@@ -1049,7 +1049,7 @@ Table组件属性
 |  bordered |  是否显示边框 | `Boolean`   |  `false`   | `true false`    |
 |source| 渲染的数据内容  |  `Array`   |     |     |
 | emptyText  |  没有内容显示的文字 |  `String`   |`'暂无数据显示'`|     |
-| showSummary |  是否显示的合计内容 | `Boolean`   |  `false`   | `true false`    |
+| hasSummary |  是否显示的合计内容 | `Boolean`   |  `false`   | `true false`    |
 |summaryMethod| 自定义计算合计的方法  |  `Function`   |     |     |
 |rowClass| 设置自定义表行的样式类  |`String|Function`|     |     |
 |height| 表格高度(单位：px)，内容超过了就会自动滚动，不设置会一直延伸  |`Number`|     |     |
