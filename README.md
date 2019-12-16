@@ -2031,5 +2031,5 @@ Scroll 组件属性：
 
 ## iconfont类名图例
 
-![图片](https://coding.net/api/project/3634775/files/4719216/imagePreview)
-![图片](https://coding.net/api/project/3634775/files/4719215/imagePreview)
+![iconfontlegend](./img/iconfont1.png)
+![iconfontlegend](./img/iconfont2.png)
