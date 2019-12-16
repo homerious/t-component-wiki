@@ -38,6 +38,16 @@
       - [29.affix / 固钉](#29-affix--固钉)
       - [30.list / 列表](#30-list--列表)
       - [31.form / 表单](#31-form--表单)
+      - [32.carousel / 轮播图](#32-carousel--轮播图)
+      - [33.digitalroll / 数字滚动](#33-digitalroll--数字滚动)
+      - [34.row&col / 行/列排版布局](#34-row&col--结构排版)
+      - [35.zone / 区域分类切换](#35-zone--区域分类切换)
+      - [36.rolling / 横向滚动通知](#36-rolling--横向滚动通知)
+      - [37.polygon / 自定义多边形](#37-polygon--自定义多边形)
+      - [38.time / 公历/农历时间展示](#38-time--公历/农历时间展示)
+      - [39.sexangle / 圆角六边形](#39-sexangle--圆角六边形)
+      - [40.title / 带图标标题](#40-title--带图标标题)
+      - [41.scroll / 滚动消息列表](#41-scroll--滚动消息列表)
      - [iconfont类名图例](#iconfont类名图例)
 
 ## 基本使用
@@ -317,8 +327,8 @@ import { Datepicker } from 't-component';
 | 属性名      | 说明    |  类型 |默认值|可选值|
 | --------- | -------- | -----: | --: |--: |
 | value | 设置绑定时间的值，绑定`v-model`的时候不需要绑定此属性  |  `String|Date Object` |     |     |
-|type| 设置选择器的功能,可以选择日期、月份、年份和日期范围|`String`   |  `date`   | `date month year week dateRange`    |
-| format  |显示格式|`String`|  `yyyy-MM-dd`   |     |
+|type| 设置选择器的功能,可以选择日期、月份、年份和日期范围|`String`   |  `date`   | `date month year week dateRange datetime`    |
+| format  |显示格式|`String`|  `yyyy-mm-dd`   |     |
 |disabledDate|设置不可选择的日期|    `Function`    |     |    |
 |rangePlaceholder|   type为dateRange的时候输入框的placeholder|  `Array`      |  `['开始时间', '结束时间']`|    |
 |placeholder|type为year、month、date的时候输入框的placeholder|`String`|`'选择日期'`|    |
@@ -816,7 +826,7 @@ import { Progress } from 't-component';
 
 | 属性名  |  说明  | 类型 | 默认值 | 可选值
 |---|---| --- | --- | --- |
-| label  |单选框代表的值,如果是字符串或者数字会在没有包裹内容的时候自动显示出来|  `Boolean|Number|String`   |     |     |
+| label |单选框代表的值,如果是字符串或者数字会在没有包裹内容的时候自动显示出来|  `Boolean|Number|String`   |     |     |
 |checked| 单选框是否被选择，若在组件里绑定`v-model`的值，不需要再绑定   |     |     |     |
 | disable  |是否禁用单选框|`Boolean`|`false`|`true` `false`|
 
@@ -1049,7 +1059,8 @@ Table组件属性
 |  bordered |  是否显示边框 | `Boolean`   |  `false`   | `true false`    |
 |source| 渲染的数据内容  |  `Array`   |     |     |
 | emptyText  |  没有内容显示的文字 |  `String`   |`'暂无数据显示'`|     |
-| hasSummary |  是否显示的合计内容 | `Boolean`   |  `false`   | `true false`    |
+| hasSummary|  是否显示的合计内容 | `Boolean`   |  `false`   | `true false`    |
+| summaryText|  合计的文字 |  `String`   |`'合计'`|   默认文字在底部第一列  |
 |summaryMethod| 自定义计算合计的方法  |  `Function`   |     |     |
 |rowClass| 设置自定义表行的样式类  |`String|Function`|     |     |
 |height| 表格高度(单位：px)，内容超过了就会自动滚动，不设置会一直延伸  |`Number`|     |     |
@@ -1091,7 +1102,7 @@ TableColumn组件属性
 |hasSorter| 是否显示排序  |  `Boolean`   |  `false`   | `true false`    |
 |sortMethod| 自定义的排序函数,，参数是两个元素，需要返回一个布尔值  | `Function`    |     |     |
 |nowrap| 是否允许内容换行，不换行超出的内容将变成省略号，鼠标滑过会有气泡提示框显示被隐藏的内容  |  `Boolean`   |  `false`   | `true false`    |
-|nowrapPos| 自定义气泡提示框显示位置  |  `String`   |  `rightCenter`   | `topCenter rightCenter  leftCenter  bottomCenter`    |
+|nowpPos| 自定义气泡提示框显示位置  |  `String`   |  `rightCenter`   | `topCenter rightCenter  leftCenter  bottomCenter`    |
 
 作用域插槽[slot-scope](https://cn.vuejs.org/v2/guide/components-slots.html#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD)
 
@@ -1566,7 +1577,6 @@ ListItem组件插槽：
 | action | 列表元素的操作内容，位置在卡片底部 |
 | extra | 列表元素的额外内容，展示在列表元素最右侧 |
 
-
 ### 31. form / 表单
 
 简介：同步、异步表单验证
@@ -1628,9 +1638,17 @@ form 组件属性：
 | 属性名 | 说明 | 类型 | 默认值 | 可选值 |
 |---|---|---|---|---|
 | model | 表单数据对象 | `Object` | | |
-| rules | 表单数据校验规则 | `Object` | | `见上案例` |
+| rules | 表单数据校验规则 | `Object` | | 示例：{
+        tel: [
+          { required: true, message: '不能为空', trigger: 'blur' },
+          { validator: telValidator },
+        ],
+        sex: [
+          { required: true, message: '请选择性别' },
+        ],
+      }, |
 | showPointer | 是否显示必填红点 | `Boolean` | `true` | true、false |
-| labelAlign | 标签显示对齐方式 | `String` | `left` | left、right |
+| labelPos | 标签显示对齐方式 | `String` | `left` | left、right |
 | inline | 表单是否行内显示 | `Boolean` | `false` | true、false |
 | showMessage | 是否显示校验错误信息 | `Boolean` | `true` | true、false |
 | inlineMessage | 是否行内显示校验错误信息 | `Boolean` | `false` | true、false |
@@ -1649,19 +1667,369 @@ formItem 组件属性：
 |---|---|---|---|---|
 | prop | 表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的 | `String` | | |
 | label | 标签文本 | `String` | |  |
-| rules | 校验规则 | `Array` |  | 示例：[{ required: true, message: '不能为空', trigger: 'blur' }, { pattern: /^1[34578]\d{9}$/, message: '您的手机号码输入错误' },] |
+| rules | 校验规则 | `Array` |  | 示例：[{ required: true, message: '不能为空', trigger: 'blur' },
+        { pattern: /^1[34578]\d{9}$/, message: '您的手机号码输入错误' },] |
 
-rules配置规则：
+### 32. carousel/ 轮播图
+
+简介：轮播图
+
+使用场景：轮播图展示。
+
+引用
+
+``` HTML 
+<template>
+     <div>
+        <Carousel>
+          <CarouselItem>
+            <img src="../assets/images/1.jpg"/>
+          </CarouselItem>
+          <CarouselItem>
+            <img src="../assets/images/2.jpg" />
+          </CarouselItem>
+          <CarouselItem>
+            <img src="../assets/images/3.jpg" />
+          </CarouselItem>
+          <CarouselItem>
+            <img src="../assets/images/4.jpg" />
+          </CarouselItem>
+          <CarouselItem>
+            <img src="../assets/images/5.jpg" />
+          </CarouselItem>
+        </Carousel>
+    </div>
+</template>
+<script>
+import { Carousel, CarouselItem} from 't-component';
+export default {
+    name: 'my-Carousel',
+    components: { Carousel, CarouselItem},
+}
+</script>
+```
+
+carousel 组件属性：
 
 | 属性名 | 说明 | 类型 | 默认值 | 可选值 |
 |---|---|---|---|---|
-| required | 是否必填 | `Boolean` | | |
-| message | 必填提示语 | `String` | |  |
-| trigger | 事件检验方式 | `String` |  | 'blur'... |
-| pattern | 正则表达式 | `Regex` |  | |
+|type|展示方式|String|'normal'|'normal'、'merry-go-round'(旋转木马)|
+|auto|是否自动轮播|Boolean|true|true、false|
+|interval|自动轮播时间间隔|Number|3000||
+|direction|自动轮播方向|String|'clockwise'|'clockwise'(顺时针)、'anticlockwise'(逆时针)|
+|arrow|左右箭头显示|String|'hover'|'hover'(悬浮式显示)、'always'(总是显示)、'never'(不显示)|
+|indicator|是否显示指示器|Boolean|false|true、false|
+
+需要配合carouselItem使用。
+
+### 33. digitalroll/ 数字滚动
+
+简介：数字滚动
+
+使用场景：大屏展示展示。
+
+引用
+
+``` HTML 
+<template>
+     <DigitRoll
+      ref='digitroll'
+      :rollDigits='digits'
+      type="roll"
+    />
+</template>
+<script>
+import { DigitRoll } from 't-component';
+export default {
+    name: 'my-DigitRolll',
+    components: { DigitRoll},
+}
+</script>
+```
+
+DigitRoll 组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|type|展示类型|String|'countUp'|'countUp'、'roll')|
+|rollDigits|滚动的数字|number| | |
+|duration|持续时间|number| 2000| |
+
+
+### 34. Row&Col/ 行列排版
+
+简介：栅格化结构排版
+
+使用场景：PC端页面
+
+引用
+
+``` HTML 
+<template>
+     <t-row :gutter="20">
+      <t-col :size="8">
+        <t-row :gutter="10">
+          <t-col :size="6"><div class="inner"></div></t-col>
+          <t-col :size="6"><div class="inner"></div></t-col>
+          <t-col :size="6"><div class="inner"></div></t-col>
+          <t-col :size="6"><div class="inner"></div></t-col>
+        </t-row>
+        <t-row :gutter="10">
+          <t-col :size="6"><div class="inner"></div></t-col>
+          <t-col :size="6"><div class="inner"></div></t-col>
+          <t-col :size="6"><div class="inner"></div></t-col>
+          <t-col :size="6"><div class="inner"></div></t-col>
+        </t-row>
+      </t-col>
+      <t-col :size="8">
+        <t-row :gutter="10">
+          <t-col :size="9"><div class="inner"></div></t-col>
+          <t-col :size="8"><div class="inner"></div></t-col>
+          <t-col :size="7"><div class="inner"></div></t-col>
+        </t-row>
+        <t-row :gutter="10">
+          <t-col :size="1"><div class="inner"></div></t-col>
+          <t-col :size="2"><div class="inner"></div></t-col>
+          <t-col :size="3"><div class="inner"></div></t-col>
+          <t-col :size="3"><div class="inner"></div></t-col>
+          <t-col :size="4"><div class="inner"></div></t-col>
+          <t-col :size="5"><div class="inner"></div></t-col>
+          <t-col :size="6"><div class="inner"></div></t-col>
+        </t-row>
+      </t-col>
+      <t-col :size="8">
+        <t-row :gutter="10">
+          <t-col :size="8"><div class="inner"></div></t-col>
+          <t-col :size="8"><div class="inner"></div></t-col>
+          <t-col :size="8"><div class="inner"></div></t-col>
+        </t-row>
+        <t-row :gutter="10">
+          <t-col :size="12"><div class="inner"></div></t-col>
+          <t-col :size="12"><div class="inner"></div></t-col>
+        </t-row>
+      </t-col>
+    </t-row>
+</template>
+<script>
+import { Row, Col } from 't-component';
+export default {
+    components: { 't-row':Row, 't-col':Col },
+}
+</script>
+```
+
+Row&Col 组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|gutter|栅格间隔|Number|0||
+|size|栅格占据的列数|Number| | |
+
+
+### 35. Zone/分类切换
+
+简介：区域分类切换
+
+使用场景：大屏展示分类
+
+引用
+
+``` HTML 
+<template>
+     <t-zone :zoneData="zoneData" :width="width" :count="6"></t-zone>
+</template>
+<script>
+import { Zone } from 't-component';
+export default {
+    components: { 't-zone':Zone },
+}
+</script>
+```
+
+Zone 组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|zoneData|展示数据|Array|[]||
+|width|展示区域宽度|String|'300px'| |
+|count|可视区展示数目|Number|10| |
+
+
+### 36. Rolling/横向滚动通知
+
+简介：当一段消息文字过长，而显示范围有限时，可使用横向滚动展示
+
+使用场景：PC端页面文字展示
+
+引用
+
+``` HTML 
+<template>
+     <t-rolling :width="rWidth" :bgColor="bg" :speed="15"></t-rolling>
+</template>
+<script>
+import { Rolling} from 't-component';
+export default {
+    components: { 't-rolling':Rolling },
+}
+</script>
+```
+
+Rolling 组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|width|展示区域宽度|String|'300px'| |
+|bgColor|展示区域背景色|String|'transparent'| |
+|speed|滚动速度|Number|15| |
+
+
+### 37. Polygon/自定义多边形
+
+简介：使用多边形作为内容的背景或修饰
+
+使用场景：PC端/大屏展示
+
+引用
+
+``` HTML 
+<template>
+     <t-polygon :cx="100" :cy="100" :r="50" :n="6" :strokeW="5" :strokeColor="strokeColor"></t-polygon>
+</template>
+<script>
+import { Polygon } from 't-component';
+export default {
+    components: { 't-polygon':Polygon },
+}
+</script>
+```
+
+Polygon 组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|cx|多边形中心点x坐标（外切圆）|Number|50| |
+|cy|多边形中心点y坐标（外切圆）|Number|50| |
+|r|多边形点到中心距离（外切圆半径）|Number|45| |
+|n|边数|Number|6| |
+|strokeW|描边宽度|Number|5| |
+|strokeColor|描边颜色|String|'#F00'|十六进制颜色或英文|
+
+
+### 38. Time/公历、农历时间展示
+
+简介：显示当前时间
+
+使用场景：大屏展示
+
+引用
+
+``` HTML 
+<template>
+     <t-time></t-time>
+</template>
+<script>
+import { Time } from 't-component';
+export default {
+    components: { 't-time':Time },
+}
+</script>
+```
+
+
+### 39. Sexangle/圆角六边形
+
+简介：页面修饰
+
+使用场景：大屏展示
+
+引用
+
+``` HTML 
+<template>
+     <t-sexangle :sideL="50" :strokeW="12" :strokeColor="strokeColor" :bgColor="bgColor"></t-sexangle>
+</template>
+<script>
+import { Sexangle } from 't-component';
+export default {
+    components: { 't-sexangle':Sexangle },
+}
+</script>
+```
+
+Sexangle 组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|sideL|边长|Number|60| |
+|strokeW|描边宽度|Number|10| |
+|strokeColor|描边颜色|String|'#'| |
+|bgColor|底色|String|'#F60'| |
+
+
+### 40. title/带图标标题
+
+简介：分块标题
+
+使用场景：大屏展示
+
+引用
+
+``` HTML 
+<template>
+    <t-title :text="txt" :icon="icon1" :iconColor="iconColor"></t-title>
+    <t-title :text="txt" :icon="icon2"></t-title>
+    <t-title :text="txt" :icon="icon3"></t-title>
+</template>
+<script>
+import { Title } from 't-component';
+export default {
+    components: { 't-title':Title },
+}
+</script>
+```
+
+Title 组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|text|标题文字|String|'默认标题'| |
+|icon|标题前面图标|String|'square'|'square'、'circle'、'line' |
+|iconColor|图标颜色|String|'#333'| |
+
+
+### 41. scroll/滚动消息列表
+
+简介：滚动消息列表
+
+使用场景：PC端或大屏展示
+
+引用
+
+``` HTML 
+<template>
+    <t-scroll :scrollData="scrollData" :width="lwidth" :height="lheight"></t-scroll>
+</template>
+<script>
+import { Scroll } from 't-component';
+export default {
+    components: { 't-scroll':Scroll },
+}
+</script>
+```
+
+Scroll 组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|scrollData|轮播数组|Array|[]| |
+|width|展示区域宽度|String|'250px'| |
+|height|展示区域高度|String|'200px'| |
+
+
 
 
 ## iconfont类名图例
 
-![iconfontlegend](./img/iconfont1.png)
-![iconfontlegend](./img/iconfont2.png)
+![图片](https://coding.net/api/project/3634775/files/4719216/imagePreview)
+![图片](https://coding.net/api/project/3634775/files/4719215/imagePreview)
