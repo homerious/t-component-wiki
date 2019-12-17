@@ -1006,6 +1006,11 @@ import { Switch } from 't-component';
     height="300px"
     width="800px"
     >
+      <TableColumn type="expand" width="20px" >
+          <div slot-scope="expand">
+            这是{{ expand.row.name}}的折叠信息，可自定义哦
+          </div>
+      </TableColumn>
      <TableColumn type="selection" ></TableColumn>
      <TableColumn type="index" ></TableColumn>
      <TableColumn colKey="name" label="姓名" ></TableColumn>
@@ -1094,7 +1099,7 @@ TableColumn组件属性
 | colkey  | 该列对应的数据字段  |  `String`   |     |     |
 |label|显示在表头的文字|   `String`  |     |     |
 |colClass|  自定义该列的样式类 |   `String`   |     |     |
-|type| 该列的显示类型  |  `String`   |     |  `'selection' 'index'`  |
+|type| 该列的显示类型  |  `String`   |     |  `'selection' 'index'``'expand'`  |
 |width|  该列的宽度 |  `String`   |     |     |
 |align| 该列的对齐方式  |  `String`   |     | `'center' 'left' 'right'`    |
 |fixed|是否固定该列到左边/右边，填true默认为左边|   `String|Boolean`   |     |  `true 'left' 'right'`   |
