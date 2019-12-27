@@ -1841,7 +1841,7 @@ Row&Col 组件属性：
 
 ``` HTML 
 <template>
-     <t-zone :zoneData="zoneData" :width="width" :count="6"></t-zone>
+    <t-zone :zoneData="zoneData" :width="width" :count="5" @zoneClick="zoneClick($event)"></t-zone>
 </template>
 <script>
 import { Zone } from 't-component';
@@ -1858,6 +1858,11 @@ Zone 组件属性：
 |zoneData|展示数据|Array|[]||
 |width|展示区域宽度|String|'300px'| |
 |count|可视区展示数目|Number|10| |
+
+Zone 组件事件：
+| 事件名 | 说明 | 返回值 |
+|---|---|---|---|---|
+|zoneClick|点击分类选项时触发事件|返回点击的zone值|
 
 
 ### 36. Rolling/横向滚动通知
@@ -1968,8 +1973,11 @@ Sexangle 组件属性：
 |---|---|---|---|---|
 |sideL|边长|Number|60| |
 |strokeW|描边宽度|Number|10| |
-|strokeColor|描边颜色|String|'#'| |
+|strokeColor|描边颜色|String|'#F00'| |
 |bgColor|底色|String|'#F60'| |
+|text|中间文字|String|'1234567'| |
+|textColor|文字颜色|String|'#F00'| |
+|textSize|文字字号|Number|20| |
 
 
 ### 40. title/带图标标题
@@ -2013,7 +2021,11 @@ Title 组件属性：
 
 ``` HTML 
 <template>
-    <t-scroll :scrollData="scrollData" :width="lwidth" :height="lheight"></t-scroll>
+    <t-scroll :width="lwidth" :height="lheight">
+      <ul>
+        <li v-for="(item, index) in scrollData" :style="index%2==0?'color:red':'color:blue'">{{item}}</li>
+      </ul>
+    </t-scroll>
 </template>
 <script>
 import { Scroll } from 't-component';
@@ -2027,11 +2039,251 @@ Scroll 组件属性：
 
 | 属性名 | 说明 | 类型 | 默认值 | 可选值 |
 |---|---|---|---|---|
-|scrollData|轮播数组|Array|[]| |
 |width|展示区域宽度|String|'250px'| |
 |height|展示区域高度|String|'200px'| |
 
+### 42. tabs/ 标签导航栏
 
+简介：标签导航栏
+
+使用场景：多个标签互相切换。
+
+引用
+
+``` HTML 
+<template>
+  <div>
+    <tabs
+        v-model="tabValue"
+        @tab-click="handleTabClick"
+        @tab-delete="handleTabDelete"
+      >
+        <tab v-for="item in tabsItem" :key="item.id" :value="item.id">{{item.name}}</tab>
+      </tabs>
+  </div>
+</template>
+
+<script>
+import { tabs, tab } from 't-component';
+
+export default {
+  name: 'test',
+  data() {
+    return {
+      tabValue: 1,
+      tabsItem: [
+        { id: 1, name: '标签1' },
+        { id: 2, name: '标签2' },
+        { id: 3, name: '标签3' },
+        { id: 4, name: '标签4' },
+        { id: 5, name: '标签5' },
+        { id: 6, name: '标签6' },
+        { id: 7, name: '标签7' },
+        { id: 8, name: '标签8' },
+        { id: 9, name: '标签9' },
+      ],
+    };
+  },
+  components: {
+    tabs, tab,
+  },
+  methods: {
+    handleTabClick(value) {
+      this.$notify.info(`You click the tab ${value}`);
+    },
+    handleTabDelete(value) {
+      this.tabsItem = this.tabsItem.filter(t => t.id !== value);
+      this.$notify.error(`You delete the tab ${value}`);
+    },
+  },
+};
+</script>
+```
+
+tabs组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|value|当前选中的tab的值，通过v-model绑定|Any|||
+
+tabs 组件事件：
+
+| 事件名称 | 说明 | 返回值 |
+|---|---|---|
+|tab-click|tab点击时触发|当前点击的tab绑定的值value|
+|tab-delete|删除一个tab时触发|当前删除的tab绑定的值value|
+
+子组件tab属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|value|tab的值,父组件选中时对应的值||||
+
+### 43. resizeTable/ 列宽自适应表格
+
+简介：一个由列内容决定列初始宽度的表格
+
+使用场景：当需要表格内容全部展示或需要列拉伸宽度时，可以使用此组件
+
+引用
+
+``` HTML 
+<template>
+  <div>
+    <resizeTable
+      width="1000px"
+      height="340px"
+      :data-source="resizeDataSource"
+      :columns="resizeColumns"
+      :resize="true"
+      :fixedHead="true"
+      :row-class="getResizeTrClass"
+      @select="getResizeSelection"
+      @expand="getResizeExpand"
+    >
+      <Empty slot="empty" description="暂无相关数据"></Empty>
+      <template slot="header">
+        以下为英雄们的信息
+      </template>
+      <template slot="footer">
+        感谢XXX提供！
+      </template>
+      <template slot="more" slot-scope="scope">
+        <t-button size="small" type="primary" @click="getResizeDetail(scope.row)">详情</t-button>
+        <t-button size="small" type="warning" @click="getResizeWarning(scope.row)">警告</t-button>
+        <t-button size="small" type="success" @click="getResizeRowExpand(scope.row)">展开</t-button>
+        <t-button size="small" type="danger" @click="getResizeDelete(scope.row)">删除</t-button>
+      </template>
+      <template slot="expand" slot-scope="scope">
+        <p style="margin: 10px;">{{scope.row.name}}</p>
+        <p style="margin: 10px;">{{scope.row.alias}}</p>
+        <p style="margin: 10px;">{{scope.row.movies}}</p>
+        <p style="margin: 10px;">{{scope.row.words}}</p>
+      </template>
+    </resizeTable>
+  </div>
+</template>
+
+<script>
+import { resizeTable, Empty, } from 't-component';
+
+export default {
+  name: 'test',
+  data() {
+    return {
+      resizeDataSource: [
+        { name: 'Tony Stark', alias: 'Iron Man', movies: 'Iron Man 1-3, Avengers 1-4', words: 'I am Iron Man!' },
+        { name: 'Steve Rogers', alias: 'Captain America', movies: 'Captain America 1-3, Avengers 1-4', words: 'A strong man who has known power all his life ,they lose respect for that power.' },
+        { name: 'Thor Odinson', alias: 'Thor', movies: 'Thor 1-3, Avengers 1-4', words: 'If you laugh with those who smile, if not stupid, that is the person who loves you.' },
+        { name: 'Peter Parker', alias: 'Spider Man', movies: 'Spider Man 1-2, Avengers 3-4', words: 'With great power comes with great responsibility.' },
+        { name: 'Robert Bruce Banner', alias: 'Hulk', movies: 'Hulk 1-2, Avengers 1-4', words: 'I get angry, you will not like me.' },
+        { name: 'Natasha Romanoff', alias: 'Black Widow', movies: 'Avengers 1-4', words: 'Let me go. It’s ok.' },
+        { name: 'Clinton Francis Barton', alias: 'Hawkeye', movies: 'Avengers 1-4', words: 'Don’t give me hope.' },
+        { name: 'Scott Lang', alias: 'Ant Man', movies: 'Ant Man 1-2, Avengers 3-4', words: 'You don\'t know the first thing about being a father.' },
+        { name: 'T\'Challa', alias: 'Black Panther', movies: 'Black Panther, Captain America 3, Avengers 3-4', words: 'I did not yield! And as you can see, I am not dead! The challenge continues!' },
+      ],
+      resizeColumns: [
+        {
+          type: 'expand',
+          initExpand: function(item, index, array) {
+            if (index === 2) return true;
+            if (item.name === 'Tony Stark') return true;
+            if (index === array.length - 1) return true;
+            return false;
+          },
+        },
+        { type: 'selection', singleSelect: true },
+        { type: 'index', label: '序号' },
+        { label: '姓名', columnKey: 'name' },
+        { label: '外号', columnKey: 'alias' },
+        { label: '电影', columnKey: 'movies' },
+        { label: '台词', columnKey: 'words' },
+        { type: 'more', label: '操作', width: '240px', minWidth: 100 },
+      ],
+      resizeSelections: [],
+      resizeExpands: [],  
+    };
+  },
+  components: {
+    resizeTable, Empty,
+  },
+  methods: {
+    getResizeSelection(arr) {
+      this.resizeSelections = arr;
+    },
+    getResizeExpand(arr) {
+      this.resizeExpands = arr;
+    },
+    getResizeDetail(row) {
+      this.$notify.info(`the detail is ${JSON.stringify(row)}`);
+    },
+    getResizeWarning(row) {
+      if (this.resizeSelections.length
+        && this.resizeDataSource[this.resizeSelections[0]].name === row.name) {
+        this.$notify.success(`this man warns you: ${row.words}`);
+      } else {
+        this.$notify.warning('this man is not selected');
+      }
+    },
+    getResizeRowExpand(row) {
+      const index = this.resizeDataSource.findIndex(item => item.name === row.name);
+      const isExpand = this.resizeExpands.indexOf(index) > -1;
+      if (isExpand) {
+        this.$notify.success(`this row ${row.name} is expanded`);
+      } else {
+        this.$notify.warning('this row is not expanded');
+      }
+    },
+    getResizeDelete(row) {
+      this.resizeDataSource = this.resizeDataSource.filter(data => data.name !== row.name);
+    },
+    getResizeTrClass(index) {
+      if (index % 2 === 0) return 'blue-row';
+      return 'red-row';
+    },
+  },
+};
+</script>
+```
+
+resizeTable组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|width|组件宽度|String|'auto'||
+|height|组件高度|String|'auto'||
+|resize|表格列宽度是否可以拉伸|Boolean|false|true、false|
+|dataSource|表格数据|Array|[]||
+|columns|表格列设置|Array|[]||
+|fixedHead|表头是否固定，注意，这里表头固定是以动画形式实现|Boolean|false|true、false|
+|rowClass|列样式，类名或通过一个接收数据index的函数返回对应的类名|String,Function|||
+
+columns列设置详细配置：
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|type|显示对应内容时不需要配置；特殊情况下配置，selection 为选择框，index 为序号，more为操作栏，操作栏内容由插槽more的内容决定；expand为展开行标志，展开行内容由插槽expand的内容决定||||
+|singleSelect|type == selection 时控制单选或多选|Boolean|false||
+|initExpand|初始化时展开列的配置|Boolean、Array、Function|false|1、false：不展开；2、true：全展开；3、[]：数组，由dataSource中数据的index组成，展开数组中的下标对应的行；4、function(item, index, array) { return true / false }：一个接收DataSource每一项、每一个index、整个dataSouce的函数，返回true/false来决定这一行是否展开|
+|label|当前列的表头显示内容||||
+|columnKey|当前列的显示内容，对应dataSource中每一项的key值||||
+|width|当前列的初始宽度，不设置时根据内容自动撑开|String||类似'100px'|
+|minWidth|当前列拉伸的情况下的最小宽度|Number|60||
+
+resizeTable组件事件：
+| 事件名称 | 说明 | 返回值 |
+|---|---|---|
+|select|开启了选择框后，当选择内容变化时触发|当前选中的所有列的index|
+|expand|开启了展开功能后，当行展开时触发|当前展开的所有列的index|
+
+resizeTable组件插槽：
+
+| 名称 | 说明 |
+|---|---|
+|header|自定义头部，置于表头的上方|
+|footer|自定义底部，置于表格的下方|
+|empty|自定义空白，当dataSource为[]时显示|
+|more|功能操作栏，可以获取当前行的数据|
+|expand|展开行内容，可以获取当前行的数据|
 
 
 ## iconfont类名图例
