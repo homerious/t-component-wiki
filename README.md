@@ -329,7 +329,7 @@ import { Datepicker } from 't-component';
 | 属性名      | 说明    |  类型 |默认值|可选值|
 | --------- | -------- | -----: | --: |--: |
 | value | 设置绑定时间的值，绑定`v-model`的时候不需要绑定此属性  |  `String|Date Object` |     |     |
-|type| 设置选择器的功能,可以选择日期、月份、年份和日期范围|`String`   |  `date`   | `date month year week dateRange datetime`    |
+|type| 设置选择器的功能,可以选择日期、月份、年份和日期范围|`String`   |  `date`   | `date month year week dateRange datetime datetimeRange`    |
 | format  |显示格式|`String`|  `yyyy-mm-dd`   |     |
 |disabledDate|设置不可选择的日期|    `Function`    |     |    |
 |rangePlaceholder|   type为dateRange的时候输入框的placeholder|  `Array`      |  `['开始时间', '结束时间']`|    |
