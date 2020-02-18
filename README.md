@@ -50,7 +50,7 @@
       - [41.scroll / 滚动消息列表](#41-scroll--滚动消息列表)
       - [42.tabs / 标签导航栏](#40-tabs--标签导航栏)
       - [43.resizeTable/ 列宽自适应表格](#43-resizeTle--列宽自适应表格)
-      - [44.exportExcel/ 导出excel](#44-exportExcel--导出excel)
+      - [44.exportExcel / 导出excel](#44-exportExcel--导出excel)
      - [iconfont类名图例](#iconfont类名图例)
 
 ## 基本使用
