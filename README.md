@@ -50,6 +50,7 @@
       - [41.scroll / 滚动消息列表](#41-scroll--滚动消息列表)
       - [42.tabs / 标签导航栏](#40-tabs--标签导航栏)
       - [43.resizeTable/ 列宽自适应表格](#43-resizeTle--列宽自适应表格)
+      - [44.exportExcel/ 导出excel](#44-exportExcel--导出excel)
      - [iconfont类名图例](#iconfont类名图例)
 
 ## 基本使用
@@ -2287,6 +2288,48 @@ resizeTable组件插槽：
 |more|功能操作栏，可以获取当前行的数据|
 |expand|展开行内容，可以获取当前行的数据|
 
+
+### 44. exportExcel/导出excel
+
+简介：导出excel
+
+使用场景：PC端导出excel
+
+引用
+
+``` HTML 
+<template>
+    <!-- dom导入 -->
+      <t-export
+        ref="exportTable"
+        dom=".tableText"
+      >
+      <button>导出domTable</button></t-export>
+       <!-- data导入 -->
+      <t-export
+        :data="exportData"
+      >
+      <button>导出数据table</button></t-export>
+</template>
+<script>
+import { exportExcel } from 't-component';
+export default {
+    components: { 't-export':exportExcel },
+}
+</script>
+```
+
+exportExcel 组件属性：
+
+| 属性名 | 说明 | 类型 | 默认值 | 可选值 |
+|---|---|---|---|---|
+|data|导出的数据|Object|{filter:[显示的字段数组]，header：'头部显示文字'，sheetData：[数据数组]}| |
+|dom|导出的dom节点|String||示例：'.main-table table' |
+|fileName|导出的文件名|String|'excel表格'| |
+|colWidth|设置单元格的宽度|Array||示例：[10,10,10] |
+|sheetName|设置表名|String|'SheetJS'| |
+|beforeExport|导出前的钩子|Function|| |
+|afterExport|Function|Function|| |
 
 ## iconfont类名图例
 
