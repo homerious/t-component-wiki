@@ -1110,7 +1110,7 @@ TableColumn组件属性
 |hasSorter| 是否显示排序  |  `Boolean`   |  `false`   | `true false`    |
 |sortMethod| 自定义的排序函数,，参数是两个元素，需要返回一个布尔值  | `Function`    |     |     |
 |nowrap| 是否允许内容换行，不换行超出的内容将变成省略号，鼠标滑过会有气泡提示框显示被隐藏的内容  |  `Boolean`   |  `false`   | `true false`    |
-|nowpPos| 自定义气泡提示框显示位置  |  `String`   |  `rightCenter`   | `topCenter rightCenter  leftCenter  bottomCenter`    |
+|nowrapPos| 自定义气泡提示框显示位置  |  `String`   |  `rightCenter`   | `topCenter rightCenter  leftCenter  bottomCenter`    |
 
 作用域插槽[slot-scope](https://cn.vuejs.org/v2/guide/components-slots.html#%E4%BD%9C%E7%94%A8%E5%9F%9F%E6%8F%92%E6%A7%BD)
 
